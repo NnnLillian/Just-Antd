@@ -203,6 +203,17 @@ $btn-border-radius-sm: $border-radius-sm !default;
 
 $btn-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
 
+// Alert
+$alt-min-width                 : 30em !default;
+$alt-padding-y                 : .75em !default;
+$alt-padding-x                 : 1.25em !default;
+$alt-margin-bottom             : 1rem !default;
+$alt-border-radius             : $border-radius !default;
+$alt-title-font-weight         : $font-weight-bold !default;
+$alt-border-width              : $border-width !default;
+$alt-description-font-size     : $font-size-sm !default;
+$alt-description-top-margin    : .3rem !default;
+
 // menu
 $menu-border-width: $border-width !default;
 $menu-border-color: $border-color !default;

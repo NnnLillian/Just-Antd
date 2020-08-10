@@ -1,0 +1,82 @@
+.alt-show-btn {
+    font-weight: $font-weight-normal;
+    color: $btn-link-color;
+    text-decoration: $link-decoration;
+    cursor: pointer;
+    display: block;
+    margin-bottom: $alt-margin-bottom;
+    
+    &:hover {
+        color: $btn-link-hover-color;
+        text-decoration: $link-hover-decoration;
+    }
+
+    &:focus,
+    &.focus {
+        text-decoration: $link-hover-decoration;
+        box-shadow: none;
+    }
+}
+
+.alt {
+    position: relative;
+    display: inline-block;
+    min-width: $alt-min-width;
+    line-height: $btn-line-height;
+    color: $white;
+    background-image: none;
+    border: $alt-border-width;
+    padding: $alt-padding-y $alt-padding-x;
+    border-radius: $alt-border-radius;
+    margin-bottom: $alt-margin-bottom;
+
+    & .alt-message{
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 $alt-padding-x 0 0;
+    
+        & .alt-title {
+            font-weight: $alt-title-font-weight;
+            display: block;
+        }
+    
+        & .alt-description {
+            margin-top: $alt-description-top-margin;
+            font-size: $alt-description-font-size;
+        }
+    }
+}
+
+.alt-close-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $white;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+    transform: rotate(-135deg);
+    &:hover {
+        opacity: 0.7;
+    }
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.alt-success {
+    @include alert-style($success, $success, $white)
+}
+
+.alt-info {
+    @include alert-style($info, $info, $white)
+}
+
+.alt-danger {
+    @include alert-style($danger, $danger, $white)
+}
+
+.alt-warning {
+    @include alert-style($warning, $warning, $white)
+}
