@@ -1,6 +1,5 @@
-import React, { ReactNode, FC, useState, Fragment } from 'react';
+import React, { FC, useState } from 'react';
 import classNames from 'classnames';
-import { Transition } from '../Transition/transition'
 import { CSSTransition } from 'react-transition-group';
 
 export enum AlertType {
@@ -37,8 +36,8 @@ export const Alert: FC<BaseAlertProps> = (props) => {
         [`alt-${alterType}`]: alterType
     })
 
-    const titleClass = classNames( {
-        'alt-description':!description,
+    const titleClass = classNames({
+        'alt-description': !description,
         'alt-title': description
     })
 
@@ -51,7 +50,7 @@ export const Alert: FC<BaseAlertProps> = (props) => {
     }
 
     return (
-        <Fragment>
+        <div style={{ display: "block" }}>
             {showButton && <span className="alt-show-btn" onClick={() => { setHide(false) }}>Show Alert</span>}
             {console.log(showButton)}
             <CSSTransition
@@ -64,12 +63,12 @@ export const Alert: FC<BaseAlertProps> = (props) => {
                 <div className={classes} >
                     <div className="alt-message">
                         <span className={titleClass}> {title} </span>
-                        {description&&<span className="alt-description"> {description} </span>}
+                        {description && <span className="alt-description"> {description} </span>}
                     </div>
                     {closable && <button className="alt-close-button" onClick={handleClose}> + </button>}
                 </div>
             </CSSTransition>
-        </Fragment>
+        </div>
     )
 }
 
