@@ -13,7 +13,7 @@ interface BaseAlertProps {
     title?: string;
     description?: string;
     className?: string;
-    alterType?: AlertType;
+    alertType?: AlertType;
     onClose?: () => void;  // 关闭alert时触发的事件
     closable?: boolean;     // 是否显示“关闭”
 }
@@ -27,13 +27,13 @@ export const Alert: FC<BaseAlertProps> = (props) => {
         title,
         description,
         className, // 用户自定义的className
-        alterType,
+        alertType,
         onClose,
         closable
     } = props;
 
     const classes = classNames('alt', className, {
-        [`alt-${alterType}`]: alterType
+        [`alt-${alertType}`]: alertType
     })
 
     const titleClass = classNames({
@@ -52,7 +52,6 @@ export const Alert: FC<BaseAlertProps> = (props) => {
     return (
         <div style={{ display: "block" }}>
             {showButton && <span className="alt-show-btn" onClick={() => { setHide(false) }}>Show Alert</span>}
-            {console.log(showButton)}
             <CSSTransition
                 in={!hide}
                 timeout={400}
@@ -73,6 +72,6 @@ export const Alert: FC<BaseAlertProps> = (props) => {
 }
 
 Alert.defaultProps = {
-    alterType: AlertType.Info,
+    alertType: AlertType.Info,
     closable: true,
 }

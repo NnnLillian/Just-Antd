@@ -20,10 +20,10 @@ function App() {
       </div>
       <div>
         <h1>Alert</h1>
-        <Alert alterType={AlertType.Success} closable={false} description='success without close' />
-        <Alert alterType={AlertType.Info} title='this is Info alert' />
-        <Alert alterType={AlertType.Warning} title='Waring Waring Waring!' />
-        <Alert alterType={AlertType.Danger} title='Danger' description='something is wrong' />
+        <Alert alertType={AlertType.Success} closable={false} description='success without close' />
+        <Alert alertType={AlertType.Info} title='this is Info alert' />
+        <Alert alertType={AlertType.Warning} title='Waring Waring Waring!' />
+        <Alert alertType={AlertType.Danger} title='Danger' description='something is wrong' />
       </div>
     </div>
   );
