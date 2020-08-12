@@ -52,8 +52,7 @@
     border: none;
     cursor: pointer;
     color: $white;
-    display: inline-block;
-    vertical-align: top;
+    display: block;
     float: right;
     transform: rotate(-135deg);
     &:hover {
