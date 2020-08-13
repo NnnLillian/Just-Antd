@@ -1,4 +1,4 @@
-import React, { FC, useContext, FunctionComponentElement } from 'react';
+import React, { FC, useContext, FunctionComponentElement, useState } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
@@ -18,14 +18,22 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
         className
     } = props
 
+    const [submenuOpen, setMenuOpen] = useState(false)
+
     const context = useContext(MenuContext)
 
     const classes = classNames('menu-item submenu-item', className, {
         'is-active': context.index === index
     })
 
+    const handleClick = (e: React.MouseEvent) => {
+        e.preventDefault()
+        setMenuOpen(!submenuOpen)
+    }
+
     // 渲染下拉菜单中的内容
     const renderChildren = () => {
+        const subMenuClasses = classNames('submenu', { 'menu-opened': submenuOpen })
         const childrenComponent = React.Children.map(children, (child, index) => {
             // FunctionComponentElement 就是 FunctionComponent实例, 用as做类型断言
             const childElement = child as FunctionComponentElement<MenuItemProps>;
@@ -37,7 +45,7 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
             }
         })
         return (
-            <ul className="submenu">
+            <ul className={subMenuClasses}>
                 {childrenComponent}
             </ul>
         )
@@ -45,7 +53,7 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
 
     return (
         <li key={index} className={classes}>
-            <div className="submenu-title">
+            <div className="submenu-title" onClick={handleClick}>
                 {title}
             </div>
             {renderChildren()}
