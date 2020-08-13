@@ -18,6 +18,7 @@ export interface MenuProps {
 interface IMenuContext {
     index: number;
     onSelect?: SelectCallback;
+    mode?: MenuMode;    // 考虑到用户的使用习惯，在horizontal时，应该当鼠标悬停在sub-title上时，即可展示submenu
 }
 
 
@@ -51,7 +52,8 @@ export const Menu: FC<MenuProps> = (props) => {
 
     const passedContext: IMenuContext = {
         index: currentActive ? currentActive : 0,
-        onSelect: handleClick
+        onSelect: handleClick,
+        mode: mode
     }
 
     const renderChildren = () => {

@@ -31,6 +31,23 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
         setMenuOpen(!submenuOpen)
     }
 
+    // 为了使submenu的打开/关闭操作更加平滑，创建setTimeOut
+    let timer: any
+    // handleMouse:操控鼠标行为的回调函数 toggle用来评判打开还是关闭submenu
+    const handleMouse = (e: React.MouseEvent, toggle: boolean) => {
+        clearTimeout(timer);
+        e.preventDefault()
+        timer = setTimeout(() => {
+            setMenuOpen(toggle)
+        }, 300)
+    }
+
+    const clickEvents = context.mode === 'vertical' ? { onClick: handleClick } : {}
+    const hoverEvents = context.mode !== 'vertical' ? {
+        onMouseEnter: (e: React.MouseEvent) => { handleMouse(e, true) },
+        onMouseLeave: (e: React.MouseEvent) => { handleMouse(e, false) }
+    } : {}
+
     // 渲染下拉菜单中的内容
     const renderChildren = () => {
         const subMenuClasses = classNames('submenu', { 'menu-opened': submenuOpen })
@@ -52,8 +69,8 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
     }
 
     return (
-        <li key={index} className={classes}>
-            <div className="submenu-title" onClick={handleClick}>
+        <li key={index} className={classes} {...hoverEvents}>
+            <div className="submenu-title" {...clickEvents}>
                 {title}
             </div>
             {renderChildren()}
