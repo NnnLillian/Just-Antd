@@ -36,7 +36,11 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
                 console.error("Warning: Menu has a child which is not a MenuItem Component")
             }
         })
-        return childrenComponent
+        return (
+            <ul className="submenu">
+                {childrenComponent}
+            </ul>
+        )
     }
 
     return (

@@ -39,7 +39,7 @@ export const Menu: FC<MenuProps> = (props) => {
 
     const classes = classNames('menu', className, {
         'menu-horizontal': mode === 'horizontal',
-        'menu-vertical': mode === 'vertical'
+        'menu-vertical': mode !== 'horizontal'
     })
 
     const handleClick = (index: number) => {
