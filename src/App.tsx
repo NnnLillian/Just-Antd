@@ -2,6 +2,8 @@ import React from 'react';
 import './styles/index.scss';
 import Button, { ButtonType, ButtonSize } from './component/Button/button';
 import { Alert, AlertType } from './component/Alert/alert';
+import { Menu } from './component/Menu/menu';
+import { MenuItem } from './component/Menu/menuItem';
 
 function App() {
   return (
@@ -24,6 +26,17 @@ function App() {
         <Alert alertType={AlertType.Info} title='this is Info alert' />
         <Alert alertType={AlertType.Warning} title='Waring Waring Waring!' />
         <Alert alertType={AlertType.Danger} title='Danger' description='something is wrong' />
+      </div>
+      <div>
+        <h1>Menu</h1>
+        <Menu onSelect={(index)=>{}}>
+           <MenuItem index={0}>
+             11111
+           </MenuItem>
+           <MenuItem index={1}>
+             22222
+           </MenuItem>
+        </Menu>
       </div>
     </div>
   );
