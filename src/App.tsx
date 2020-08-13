@@ -4,6 +4,7 @@ import Button, { ButtonType, ButtonSize } from './component/Button/button';
 import { Alert, AlertType } from './component/Alert/alert';
 import { Menu } from './component/Menu/menu';
 import { MenuItem } from './component/Menu/menuItem';
+import { SubMenu } from './component/Menu/subMenu';
 
 function App() {
   return (
@@ -29,12 +30,26 @@ function App() {
       </div>
       <div>
         <h1>Menu</h1>
-        <Menu onSelect={(index)=>{}}>
-           <MenuItem index={0}>
-             11111
+        <Menu onSelect={(index) => { }} mode="vertical">
+          <MenuItem>
+            11111
            </MenuItem>
-           <MenuItem index={1}>
-             22222
+          <SubMenu title="dropdown">
+            <MenuItem>
+              sub111
+             </MenuItem>
+            <MenuItem>
+              sub222
+             </MenuItem>
+          </SubMenu>
+          <MenuItem>
+            22222
+           </MenuItem>
+          <MenuItem disabled>
+            33333
+           </MenuItem>
+          <MenuItem>
+            44444
            </MenuItem>
         </Menu>
       </div>
