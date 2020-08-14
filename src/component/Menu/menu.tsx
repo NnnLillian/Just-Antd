@@ -13,12 +13,14 @@ export interface MenuProps {
     style?: CSSProperties;
     onSelect?: SelectCallback;
     children?: any[];
+    defaultOpenSubMenus?: string[]
 }
 
 interface IMenuContext {
     index: string;
     onSelect?: SelectCallback;
     mode?: MenuMode;    // 考虑到用户的使用习惯，在horizontal时，应该当鼠标悬停在sub-title上时，即可展示submenu
+    defaultOpenSubMenus?: string[]
 }
 
 
@@ -31,7 +33,8 @@ export const Menu: FC<MenuProps> = (props) => {
         style,
         children,
         defaultIndex,
-        onSelect
+        onSelect,
+        defaultOpenSubMenus
     } = props;
 
     console.log(onSelect)
@@ -53,7 +56,8 @@ export const Menu: FC<MenuProps> = (props) => {
     const passedContext: IMenuContext = {
         index: currentActive ? currentActive : '0',
         onSelect: handleClick,
-        mode: mode
+        mode,
+        defaultOpenSubMenus
     }
 
     const renderChildren = () => {
@@ -62,7 +66,7 @@ export const Menu: FC<MenuProps> = (props) => {
             const childElement = child as FunctionComponentElement<MenuItemProps>;
             const { displayName } = childElement.type
             if (displayName === 'MenuItem' || displayName === 'SubMenu') {
-                return React.cloneElement(childElement, { index:index.toString() })
+                return React.cloneElement(childElement, { index: index.toString() })
             } else {
                 console.error("Warning: Menu has a child which is not a MenuItem Component")
             }
@@ -84,5 +88,6 @@ export const Menu: FC<MenuProps> = (props) => {
 
 Menu.defaultProps = {
     defaultIndex: '0',
-    mode: 'horizontal'
+    mode: 'horizontal',
+    defaultOpenSubMenus:[]
 }
