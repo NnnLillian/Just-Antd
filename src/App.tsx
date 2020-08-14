@@ -30,28 +30,56 @@ function App() {
       </div>
       <div>
         <h1>Menu</h1>
-        <Menu onSelect={(index) => { }} mode="vertical">
-          <MenuItem>
-            11111
-           </MenuItem>
-          <SubMenu title="dropdown">
+        <div>
+          <h4>horizontal</h4>
+          <Menu onSelect={(index) => { alert(index) }}>
             <MenuItem>
-              sub111
+              Home
+           </MenuItem>
+            <SubMenu title="Maps">
+              <MenuItem>
+                Google Maps
              </MenuItem>
+              <MenuItem>
+                Leaflet Maps
+             </MenuItem>
+            </SubMenu>
             <MenuItem>
-              sub222
+              Detail
+           </MenuItem>
+            <MenuItem disabled>
+              Pages
+           </MenuItem>
+            <MenuItem>
+              Settings
+           </MenuItem>
+          </Menu>
+        </div>
+        <div>
+          <h4>vertical</h4>
+          <Menu onSelect={(index) => { alert(index) }} mode="vertical" defaultOpenSubMenus={['1']}>
+            <MenuItem>
+              Home
+           </MenuItem>
+            <SubMenu title="Maps">
+              <MenuItem>
+                Google Maps
              </MenuItem>
-          </SubMenu>
-          <MenuItem>
-            22222
+              <MenuItem>
+                Leaflet Maps
+             </MenuItem>
+            </SubMenu>
+            <MenuItem>
+              Detail
            </MenuItem>
-          <MenuItem disabled>
-            33333
+            <MenuItem disabled>
+              Pages
            </MenuItem>
-          <MenuItem>
-            44444
+            <MenuItem>
+              Settings
            </MenuItem>
-        </Menu>
+          </Menu>
+        </div>
       </div>
     </div>
   );
