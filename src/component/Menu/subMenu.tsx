@@ -5,7 +5,7 @@ import { MenuItemProps } from './menuItem';
 
 
 export interface SubMenuProps {
-    index?: number;
+    index?: string;
     title: string;
     className?: string;
 }
@@ -51,12 +51,12 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
     // 渲染下拉菜单中的内容
     const renderChildren = () => {
         const subMenuClasses = classNames('submenu', { 'menu-opened': submenuOpen })
-        const childrenComponent = React.Children.map(children, (child, index) => {
+        const childrenComponent = React.Children.map(children, (child, i) => {
             // FunctionComponentElement 就是 FunctionComponent实例, 用as做类型断言
             const childElement = child as FunctionComponentElement<MenuItemProps>;
             const { displayName } = childElement.type
             if (displayName === 'MenuItem') {
-                return childElement
+                return React.cloneElement(childElement, { index: `${index}-${i}` })
             } else {
                 console.error("Warning: Menu has a child which is not a MenuItem Component")
             }
