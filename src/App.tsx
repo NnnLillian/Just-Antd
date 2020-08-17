@@ -5,6 +5,8 @@ import { Alert, AlertType } from './component/Alert/alert';
 import { Menu } from './component/Menu/menu';
 import { MenuItem } from './component/Menu/menuItem';
 import { SubMenu } from './component/Menu/subMenu';
+import { Tabs } from './component/Tabs/tabs';
+import { TabsItem } from './component/Tabs/tabsItem';
 
 function App() {
   return (
@@ -79,6 +81,28 @@ function App() {
               Settings
            </MenuItem>
           </Menu>
+        </div>
+      </div>
+      {/* Tabs */}
+      <div>
+        <h1>Tabs</h1>
+        <div>
+          <h4>line</h4>
+          <Tabs type="line">
+            <TabsItem label="1 card">this 1</TabsItem>
+            <TabsItem label="2 card">this 2</TabsItem>
+            <TabsItem label="3 card">this 3</TabsItem>
+            <TabsItem label="4 card" disabled>this 4</TabsItem>
+          </Tabs>
+        </div>
+        <div>
+          <h4>card</h4>
+          <Tabs type="card">
+            <TabsItem label="1 card">this 1</TabsItem>
+            <TabsItem label="2 card">this 2</TabsItem>
+            <TabsItem label="3 card">this 3</TabsItem>
+            <TabsItem label="4 card" disabled>this 4</TabsItem>
+          </Tabs>
         </div>
       </div>
     </div>
