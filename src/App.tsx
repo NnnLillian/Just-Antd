@@ -7,6 +7,11 @@ import { MenuItem } from './component/Menu/menuItem';
 import { SubMenu } from './component/Menu/subMenu';
 import { Tabs } from './component/Tabs/tabs';
 import { TabsItem } from './component/Tabs/tabsItem';
+import { Icon } from './component/Icon/icon';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fas)
 
 function App() {
   return (
@@ -14,6 +19,7 @@ function App() {
       <header className="App-header">
       </header>
       <div>
+        <Icon icon="coffee" theme="danger" size="lg" />
         <h1>Button</h1>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Large</Button>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Small}>Button</Button>
