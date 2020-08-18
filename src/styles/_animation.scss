@@ -1,26 +1,4 @@
-.zoom-in-top-enter{
-    opacity: 0;
-    transform: scaleY(0);
-}
-
-.zoom-in-top-enter-active{
-    opacity: 1;
-    // transform: 允许你旋转，缩放，倾斜或平移给定元素
-    transform: scaleY(1);  
-    // transition：更改CSS属性时控制动画速度的方法
-    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
-    transform-origin: center top;   // 更改动画变形的原点
-}
-
-.zoom-in-top-exit{
-    opacity: 1;
-}
-
-.zoom-in-top-exit-active{
-    opacity: 0;
-    // transform: 允许你旋转，缩放，倾斜或平移给定元素
-    transform: scaleY(0);  
-    // transition：更改CSS属性时控制动画速度的方法
-    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
-    transform-origin: center top;   // 更改动画变形的原点
-}
+@include zoom-animation('top', scaleY(0), scaleY(1), center top);
+@include zoom-animation('left', scale(.45, .45), scale(1, 1), top left);
+@include zoom-animation('right', scale(.45, .45), scale(1, 1), top right);
+@include zoom-animation('bottom', scaleY(0), scaleY(1),  center bottom);
