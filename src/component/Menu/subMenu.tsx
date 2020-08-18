@@ -2,7 +2,8 @@ import React, { FC, useContext, FunctionComponentElement, useState } from 'react
 import classNames from 'classnames';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
-
+import { Icon } from '../Icon/icon';
+import { CSSTransition } from 'react-transition-group';
 
 export interface SubMenuProps {
     index?: string;
@@ -28,7 +29,8 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
 
 
     const classes = classNames('menu-item submenu-item', className, {
-        'is-active': context.index === index
+        'is-active': context.index === index,
+        'is-opened': submenuOpen
     })
 
     const handleClick = (e: React.MouseEvent) => {
@@ -55,7 +57,7 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
 
     // 渲染下拉菜单中的内容
     const renderChildren = () => {
-        const subMenuClasses = classNames('submenu', { 'menu-opened': submenuOpen })
+        const subMenuClasses = classNames('submenu')
         const childrenComponent = React.Children.map(children, (child, i) => {
             // FunctionComponentElement 就是 FunctionComponent实例, 用as做类型断言
             const childElement = child as FunctionComponentElement<MenuItemProps>;
@@ -67,9 +69,17 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
             }
         })
         return (
-            <ul className={subMenuClasses}>
-                {childrenComponent}
-            </ul>
+            <CSSTransition
+                in={submenuOpen}
+                timeout={300}
+                classNames="zoom-in-top"
+                appear
+                unmountOnExit
+            >
+                <ul className={subMenuClasses}>
+                    {childrenComponent}
+                </ul>
+            </CSSTransition>
         )
     }
 
@@ -77,6 +87,7 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
         <li key={index} className={classes} {...hoverEvents}>
             <div className="submenu-title" {...clickEvents}>
                 {title}
+                <Icon icon="angle-down" className="arrow-icon" size="sm" />
             </div>
             {renderChildren()}
         </li>
