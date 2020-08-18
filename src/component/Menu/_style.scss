@@ -20,7 +20,7 @@
             cursor: default;
         }
         &.is-active, &:hover{
-            color: $menu-item-active-color ;
+            color: $menu-item-active-color !important;
             border-bottom: $menu-item-active-border-width  solid  $menu-item-active-color;
         }
     }
@@ -31,8 +31,15 @@
             display: flex;
             align-items: center;
         }
+        .arrow-icon{
+            margin-left: 3px;
+            transition: transform .25s ease-in-out;
+        }
         &:hover{
             color: $body-color;
+            .arrow-icon{
+                transform: rotate(180deg)
+            }
         }
     }
 
@@ -73,6 +80,14 @@
     flex-direction: column;
     border-bottom: 0px;
     border-right: $menu-border-width solid $menu-border-color;
+    .arrow-icon{
+        transform: rotate(0) !important;
+    }
+    .is-opened{
+        .arrow-icon{
+            transform: rotate(180deg) !important;
+        }
+    }
     >.menu-item{
         border-bottom: none;
         &.is-active,&:hover{
