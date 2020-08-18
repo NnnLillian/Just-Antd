@@ -73,6 +73,7 @@ export const SubMenu: FC<SubMenuProps> = (props) => {
                 in={submenuOpen}
                 timeout={300}
                 classNames="zoom-in-top"
+                wrapper
             >
                 <ul className={subMenuClasses}>
                     {childrenComponent}

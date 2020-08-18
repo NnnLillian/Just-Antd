@@ -14,6 +14,7 @@ export const Transition: FC<TransitionProps> = (props) => {
         children,
         classNames,
         animation,
+        wrapper,
         ...restProps
     } = props;
 
@@ -22,7 +23,7 @@ export const Transition: FC<TransitionProps> = (props) => {
             classNames={classNames ? classNames : animation}
             {...restProps}
         >
-            {children}
+            {wrapper ? <div>{children}</div> : {children}}
         </CSSTransition>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/index.scss';
-import Button, { ButtonType, ButtonSize } from './component/Button/button';
+import Button from './component/Button/button';
 import { Alert, AlertType } from './component/Alert/alert';
 import { Menu } from './component/Menu/menu';
 import { MenuItem } from './component/Menu/menuItem';
@@ -21,13 +21,13 @@ function App() {
       <div>
         <Icon icon="coffee" theme="danger" size="lg" />
         <h1>Button</h1>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Large</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Small}>Button</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Small} disabled>Disabled</Button>
-        <Button btnType={ButtonType.Default} size={ButtonSize.Small}>Default</Button>
-        <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>Danger</Button>
-        <Button btnType={ButtonType.Warning} size={ButtonSize.Small}>Warning</Button>
-        <Button btnType={ButtonType.Link} href="http://www.baidu.com" children="Baidu" />
+        <Button btnType={"primary"} size={"lg"}>Large</Button>
+        <Button btnType={"primary"} size={"sm"}>Button</Button>
+        <Button btnType={"primary"} size={"sm"} disabled>Disabled</Button>
+        <Button btnType={"default"} size={"sm"}>Default</Button>
+        <Button btnType={"danger"} size={"sm"}>Danger</Button>
+        <Button btnType={"warning"} size={"sm"}>Warning</Button>
+        <Button btnType={"link"} href="http://www.baidu.com" children="Baidu" />
       </div>
       <div>
         <h1>Alert</h1>
