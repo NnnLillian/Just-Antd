@@ -6,9 +6,13 @@ type ButtonSize = 'lg' | 'sm'
 type ButtonType = 'primary' | 'default' | 'danger' | 'warning' | 'link'
 
 interface BaseButtonProps {
+    /** 用户自定义的className */
     className?: string;
+    /** 按钮失效状态 */
     disabled?: boolean;
+    /** 设置按钮大小 */
     size?: ButtonSize;
+    /** 设置按钮类型 */
     btnType?: ButtonType;
     children?: ReactNode;
     href?: string
@@ -22,7 +26,7 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 
-const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = (props) => {
     const {
         btnType,
         className,
