@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/index.scss';
-import Button from './component/Button/button';
+import { Button} from './component/Button/button';
 import { Alert, AlertType } from './component/Alert/alert';
 import { Menu } from './component/Menu/menu';
 import { MenuItem } from './component/Menu/menuItem';

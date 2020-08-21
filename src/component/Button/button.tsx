@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 type ButtonSize = 'lg' | 'sm'
 
-type ButtonType = 'primary' | 'default' | 'danger' | 'warning' | 'link'
+export type ButtonType = 'primary' | 'default' | 'danger' | 'warning' | 'link'
 
 interface BaseButtonProps {
     /** 用户自定义的className */
@@ -25,7 +25,9 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 // 所以选择 Partial<>
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
-
+/**
+ * **按钮用于开始一个即时操作**
+ */
 export const Button: FC<ButtonProps> = (props) => {
     const {
         btnType,
@@ -66,7 +68,6 @@ export const Button: FC<ButtonProps> = (props) => {
 
 Button.defaultProps = {
     disabled: false,
-    btnType: "default"
+    btnType: "primary",
+    size: "sm"
 }
-
-export default Button;
