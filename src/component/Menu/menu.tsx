@@ -7,13 +7,19 @@ type MenuMode = 'horizontal' | 'vertical'
 type SelectCallback = (selectedIndex: string) => void
 
 export interface MenuProps {
+    /** 初始展开的SubMenu菜单项 */
+    defaultOpenSubMenus?: string[];
+    /** 初始选中的菜单项 */
     defaultIndex?: string; // 默认那个menuItem是高亮的
+    /** 用户自定义的className */
     className?: string;
+    /** 菜单类型，支持垂直、水平两种模式 */
     mode?: MenuMode;
+    /** 根节点样式 */
     style?: CSSProperties;
+    /** 点击MenuItem调用此函数 */
     onSelect?: SelectCallback;
     children?: any[];
-    defaultOpenSubMenus?: string[]
 }
 
 interface IMenuContext {
@@ -25,7 +31,9 @@ interface IMenuContext {
 
 
 export const MenuContext = createContext<IMenuContext>({ index: '0' })
-
+/**
+ * **为页面和功能提供导航的菜单列表**
+ */
 export const Menu: FC<MenuProps> = (props) => {
     const {
         className,
@@ -36,8 +44,6 @@ export const Menu: FC<MenuProps> = (props) => {
         onSelect,
         defaultOpenSubMenus
     } = props;
-
-    console.log(onSelect)
 
     const [currentActive, setActive] = useState(defaultIndex)
 
@@ -89,5 +95,5 @@ export const Menu: FC<MenuProps> = (props) => {
 Menu.defaultProps = {
     defaultIndex: '0',
     mode: 'horizontal',
-    defaultOpenSubMenus:[]
+    defaultOpenSubMenus: []
 }
