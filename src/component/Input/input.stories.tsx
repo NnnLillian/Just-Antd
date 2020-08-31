@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Meta } from '@storybook/react/types-6-0';
 import { Input } from './input';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -19,7 +19,7 @@ export default {
 } as Meta;
 
 export const Default = () => (
-    <Input/>
+    <Input />
 )
 Default.story = {
     name: 'default 输入框',

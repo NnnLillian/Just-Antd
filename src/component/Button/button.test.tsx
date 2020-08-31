@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Button, { ButtonProps } from './button';
+import { Button, ButtonProps } from './button';
 
 
 const defaultProps = {
@@ -13,9 +13,9 @@ const testProps: ButtonProps = {
     className: 'test-class'
 }
 
-const disabledProps: ButtonProps={
-    disabled:true,
-    onClick:jest.fn()
+const disabledProps: ButtonProps = {
+    disabled: true,
+    onClick: jest.fn()
 }
 
 describe('test Button component', () => {
@@ -29,7 +29,7 @@ describe('test Button component', () => {
         fireEvent.click(element)
         expect(defaultProps.onClick).toBeCalled()
     })
-    
+
     it('should render the correct component based on different props', () => {
         const wrapper = render(<Button {...testProps}>Nice</Button>)
         const element = wrapper.getByText('Nice')
