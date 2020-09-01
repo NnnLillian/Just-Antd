@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, AlertType } from './alert';
+import { Alert } from './alert';
 import { Meta } from '@storybook/react/types-6-0';
 
 
@@ -18,10 +18,10 @@ Default.story = {
 
 export const styleAlert = () => (
     <>
-        <Alert alertType={AlertType.Success} description='success without close' />
-        <Alert alertType={AlertType.Info} title='this is Info alert' />
-        <Alert alertType={AlertType.Warning} title='Waring Waring Waring!' />
-        <Alert alertType={AlertType.Danger} title='Danger！！！' closable={false} />
+        <Alert alertType="success" description='success without close' />
+        <Alert alertType="info" title='this is Info alert' />
+        <Alert alertType="warning" title='Waring Waring Waring!' />
+        <Alert alertType="danger" title='Danger！！！' closable={false} />
     </>
 )
 styleAlert.story = {
@@ -30,7 +30,7 @@ styleAlert.story = {
 
 export const descAlert = () => (
     <>
-        <Alert alertType={AlertType.Danger} title='Danger' description='something is wrong' />
+        <Alert alertType="danger" title='Danger' description='something is wrong' />
     </>
 )
 descAlert.story = {

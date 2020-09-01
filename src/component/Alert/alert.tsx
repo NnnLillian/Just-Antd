@@ -2,22 +2,26 @@ import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
-export enum AlertType {
-    Success = 'success',
-    Info = 'info',
-    Danger = 'danger',
-    Warning = 'warning'
-}
+type AlertType = "success"|"info"|"danger"|"warning";
 
 interface BaseAlertProps {
+    /** 警告提示文字 */
     title?: string;
+    /** 警告提示的辅助性文字 */
     description?: string;
+    /** 自定义类名 */
     className?: string;
+    /** 警告样式 */
     alertType?: AlertType;
-    onClose?: () => void;  // 关闭alert时触发的事件
-    closable?: boolean;     // 是否显示“关闭”
+    /** 关闭alert时触发的事件 */
+    onClose?: () => void;
+    /** 是否显示“关闭” */
+    closable?: boolean;
 }
 
+/** 
+ * 警告提示，展现需要关注的信息 
+ **/
 export const Alert: FC<BaseAlertProps> = (props) => {
 
     const [hide, setHide] = useState(false);
@@ -72,6 +76,6 @@ export const Alert: FC<BaseAlertProps> = (props) => {
 }
 
 Alert.defaultProps = {
-    alertType: AlertType.Info,
+    alertType: "info",
     closable: true,
 }
