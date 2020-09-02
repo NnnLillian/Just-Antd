@@ -11,7 +11,7 @@ interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
 export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     const {
         value,
-        history,
+        history = [],
         fetchSuggestion,
         onSelect,
         renderOption,
@@ -20,7 +20,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
     const [suggestion, setSuggestion] = useState<string[]>([])
     const [inputValue, setInputValue] = useState(value)
-    const [inputHistory, setHistory] = useState<string[]>(history ? history : [])
+    const [inputHistory, setHistory] = useState<string[]>(history)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.trim()
