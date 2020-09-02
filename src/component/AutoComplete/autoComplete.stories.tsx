@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react/types-6-0';
+import { action } from '@storybook/addon-actions'
 import { AutoComplete } from './autoComplete';
 
 export default {
@@ -14,5 +15,6 @@ const handleFetch = (query: string) => happy.filter(name => name.includes(query)
 export const Default = () => (
     <AutoComplete
         fetchSuggestion={handleFetch}
+        onSelect={action('selected')}
     />
 )

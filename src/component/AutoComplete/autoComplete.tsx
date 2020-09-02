@@ -28,11 +28,19 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         }
     }
 
+    const handleSelect=(item:string)=>{
+        setInputValue(item)
+        setSuggestion([])
+        if(onSelect){
+            onSelect(item)
+        }
+    }
+
     const generateDropdown = () => {
         return (
             <ul>
                 {suggestion.map((item, index) => (
-                    <li key={index}>
+                    <li key={index} onClick={()=>handleSelect(item)}>
                         {item}
                     </li>
                 ))}
