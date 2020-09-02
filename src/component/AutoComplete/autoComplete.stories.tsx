@@ -9,12 +9,16 @@ export default {
 } as Meta;
 
 const happy = ['sss', 'rrr', 'sdfa', 'vavwezs']
-const handleFetch = (query: string) => happy.filter(name => name.includes(query))
-
+const handleFetch = (query: string, list: string[]) => list.filter(name => name.includes(query))
+const option = (item: string) => (
+    <span>history: {item}</span>
+)
 
 export const Default = () => (
     <AutoComplete
+        history={happy}
         fetchSuggestion={handleFetch}
         onSelect={action('selected')}
+        renderOption={option}
     />
 )
