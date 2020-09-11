@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent, ReactElement, KeyboardEvent, useEffect } from 'react';
+import React, { FC, useState, ChangeEvent, ReactElement, KeyboardEvent, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { InputProps, Input } from '../Input/input';
 import { Icon } from '../Icon/icon';
@@ -35,10 +35,12 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     const [loading, setLoading] = useState(false) // 是否显示loading
     const debouncedValue = useDebounce(inputValue, 500) // 延时数据
     const [highlightIndex, setHighlightIndex] = useState(-1)
+    // useRef 在多次渲染中保持相同的引用, triggerSearch表示现在是否触发搜索功能
+    const triggerSearch = useRef(false)
     // const [inputHistory, setHistory] = useState<string[]>(history)
 
     useEffect(() => {
-        if (debouncedValue) {
+        if (debouncedValue && triggerSearch.current) {
             // const results = fetchSuggestion(value, inputHistory)
             const results = fetchSuggestion(debouncedValue)
             if (results instanceof Promise) {
@@ -59,6 +61,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.trim()
         setInputValue(value)
+        // 在input内容还在改变时，suggestion的搜索状态为true
+        triggerSearch.current = true;
     }
 
     const handleSelect = (item: DataSourceType) => {
@@ -67,6 +71,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         if (onSelect) {
             onSelect(item)
         }
+        // 当选择完毕之后，suggestion的搜索状态为false, 避免了二次重复搜索
+        triggerSearch.current = false
     }
 
     /**
