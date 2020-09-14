@@ -5,13 +5,14 @@ import { Icon } from '../Icon/icon';
 import useDebounce from '../../hooks/useDebounce';
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import useClickOutside from '../../hooks/useClickOutside';
 library.add(fas)
 
 interface DataSourceObject {
     value: string
 }
 export type DataSourceType<T = {}> = T & DataSourceObject
-interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
+export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
     fetchSuggestion: (value: string) => DataSourceType[] | Promise<DataSourceType[]>;
     onSelect?: (item: DataSourceType) => void;
     renderOption?: (item: DataSourceType) => ReactElement;
@@ -37,17 +38,24 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     const [highlightIndex, setHighlightIndex] = useState(-1)
     // useRef 在多次渲染中保持相同的引用, triggerSearch表示现在是否触发搜索功能
     const triggerSearch = useRef(false)
+
+    // 这个ref指向组件整个的dom节点
+    const componentRef = useRef<HTMLDivElement>(null)
+    useClickOutside(componentRef, () => { setSuggestion([]) })
     // const [inputHistory, setHistory] = useState<string[]>(history)
 
     useEffect(() => {
         if (debouncedValue && triggerSearch.current) {
             // const results = fetchSuggestion(value, inputHistory)
+            setSuggestion([])
             const results = fetchSuggestion(debouncedValue)
             if (results instanceof Promise) {
                 setLoading(true)
                 results.then(data => {
                     setLoading(false)
                     setSuggestion(data)
+                    if (data.length > 0) {
+                    }
                 })
             } else {
                 setSuggestion(results)
@@ -119,7 +127,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
     const generateDropdown = () => {
         return (
-            <ul>
+            <ul className="suggestion-list">
+                {loading && <div className="suggestion-loading-icon"><Icon icon="spinner" spin /></div>}
                 {suggestion.map((item, index) => {
                     const cnames = classNames('suggestion-item', {
                         'highlight-item': index === highlightIndex
@@ -133,7 +142,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     }
 
     return (
-        <div className="auto-complete">
+        <div className="auto-complete" ref={componentRef}>
+            {/* {loading && <div className="suggestion-loading-icon"><Icon icon="spinner" spin /></div>} */}
             <Input
                 value={inputValue}
                 onChange={handleChange}
@@ -141,9 +151,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
                 // onBlur={() => handleBlur(inputValue)}
                 {...restProps}
             />
-            {loading && <ul><Icon icon="spinner" spin /></ul>}
-            {/* <ul><Icon icon="coffee" spin /></ul> */}
-            {suggestion.length > 0 && generateDropdown()}
+            {generateDropdown()}
         </div>
     )
 }
