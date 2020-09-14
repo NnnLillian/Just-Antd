@@ -1,6 +1,53 @@
 .highlight-item
 {
-    color: $white;
+    color: $white !important;
     background: $primary;
 }
 
+.auto-complete
+{
+    position: relative;
+}
+
+.suggestion-list
+{
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+
+    width: 100%;
+    padding-left: 0;
+
+    list-style: none;
+
+    white-space: nowrap;
+
+    border: $menu-border-width solid $menu-border-color;
+    background: $white;
+    // box-shadow: $submenu-box-shadow;
+
+    .suggestion-item
+    {
+        padding: $menu-item-padding-y $menu-item-padding-x;
+
+        cursor: pointer;
+        transition: $menu-transition;
+
+        color: $body-color;
+        &:hover
+        {
+            color: $white;
+            background-color: $primary;
+        }
+    }
+
+    .suggestion-loading-icon
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 75px;
+    }
+}
