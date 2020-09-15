@@ -145,7 +145,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         <div className="auto-complete" ref={componentRef}>
             {/* {loading && <div className="suggestion-loading-icon"><Icon icon="spinner" spin /></div>} */}
             <Input
-                value={inputValue}
+                value={inputValue || ''}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
                 // onBlur={() => handleBlur(inputValue)}
