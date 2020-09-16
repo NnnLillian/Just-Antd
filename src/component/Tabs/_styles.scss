@@ -5,6 +5,10 @@
     flex-wrap: wrap;
     padding-left: 0;
     border-bottom: $tabs-nav-border-width solid $tabs-nav-border-color;
+    background-color: white;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0; 
     
     .tabs-nav-item{
         display: block;
