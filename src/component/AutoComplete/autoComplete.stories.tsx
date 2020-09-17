@@ -77,7 +77,7 @@ interface GithubUserProps {
 }
 
 const fetchFetch = (query: string) => {
-    return fetch(\`https://api.github.com/search/users?q=\$\{query\}\`)
+    return fetch(\`https://api.github.com/search/users?q=$\{query}\`)
         .then(
             res => res.clone().json()
         ).then(

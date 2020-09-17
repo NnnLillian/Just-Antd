@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
-type AlertType = "success"|"info"|"danger"|"warning";
+type AlertType = "success" | "info" | "danger" | "warning";
 
 interface BaseAlertProps {
     /** 警告提示文字 */
@@ -77,5 +77,5 @@ export const Alert: FC<BaseAlertProps> = (props) => {
 
 Alert.defaultProps = {
     alertType: "info",
-    closable: true,
+    closable: false,
 }
