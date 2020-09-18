@@ -14,7 +14,23 @@ export default {
             handles: ['change']
         },
         docs: {
-            description: { component: '**通过鼠标或键盘输入内容，基础表单域的包装**' }
+            description: {
+                component:
+                    `
+** 通过鼠标或键盘输入内容，基础表单域的包装 **
+
+
+
+<div style="font-size:1.2rem; margin-top: 4px;">何时使用</div>
+<ul><li>需要用户输入表单域内容时。</li><li>提供组合型输入框，带搜索的输入框，还可以进行大小选择</li></ul>
+<div style="font-size:1.2rem; margin-bottom: 4px;">引用方式</div>
+<code>
+import Input from './input'
+</code>
+
+<h3 style="margin-top: 16px; margin-bottom: 0">代码演示</h3>
+            `
+            }
         }
     },
     // 装饰文件
@@ -29,6 +45,7 @@ export const Default = InputStory.bind({})
 Default.storyName = "Default 输入框"
 Default.argTypes = {
     placeholder: {
+        description: '输入框提示性文字',
         control: 'text',
     },
     icon: {
@@ -61,6 +78,11 @@ Default.parameters = {
             { name: 'light', value: '#fff' },
         ],
     },
+    docs: {
+        source: {
+            code: "<Input />"
+        }
+    }
 }
 
 // export const disableInput = () => <Input placeholder="disabled input" disabled />
@@ -71,7 +93,7 @@ export const disableInput = InputStory.bind({})
 disableInput.parameters = {
     docs: {
         source: {
-            code: "import Input from './input' \n \n <Input disabled/>"
+            code: "<Input disabled/>"
         }
     },
     controls: {
@@ -86,7 +108,7 @@ iconInput.story = {
 iconInput.parameters = {
     docs: {
         source: {
-            code: "import Input from './input' \n \n <Input icon='search' placeholder='input with icon' />"
+            code: "<Input icon='search' placeholder='input with icon' />"
         }
     },
     controls: { hideNoControlsWarning: true }
@@ -103,7 +125,7 @@ sizeInput.story = {
     parameters: {
         docs: {
             source: {
-                code: "import Input from './input' \n \n <Input defaultValue='large size' size='lg' /> \n <Input placeholder='small size' size='sm' />"
+                code: "<Input defaultValue='large size' size='lg' /> \n<Input placeholder='small size' size='sm' />"
             }
         },
         controls: { hideNoControlsWarning: true }
@@ -121,7 +143,7 @@ pandInput.story = {
     parameters: {
         docs: {
             source: {
-                code: "import Input from './input' \n \n <Input defaultValue='prepend text' prepend='https//' /> \n <Input defaultValue='google' append='.com' />"
+                code: "<Input defaultValue='prepend text' prepend='https//' /> \n <Input defaultValue='google' append='.com' />"
             }
         },
         controls: { hideNoControlsWarning: true }
