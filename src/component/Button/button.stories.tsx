@@ -9,42 +9,38 @@ export default {
         actions: {
             handles: ['click']
         },
-        // docs: {
-        //     description: {
-        //         component: '**按钮用于开始一个即时操作**'
-        //     }
-        // },
+        docs: {
+            description: {
+                component:
+                    `
+** 按钮用于开始一个即时操作 **
+
+
+
+<div style="font-size:1.2rem; margin-top: 4px;">何时使用</div>
+<p>标记了一个（或封装一组）操作明亮，相应用户点击行为，触发相应的业务逻辑。</p>
+<div style="font-size:1.2rem; margin-bottom: 4px;">引用方式</div>
+<code>
+import Button from './Button';
+</code>
+
+<h3 style="margin-top: 16px; margin-bottom: 0">代码演示</h3>
+                `
+            }
+        },
     },
     // 装饰文件
     decorators: [(Story: any) => <div style={{ textAlign: "center" }}><Story /></div>],
-    // 自定义属性列表（在原有基础上添加）
-    // argTypes: {
-    //     disabled: {
-    //       description: 'overwritten description',
-    //       table: {
-    //         type: { 
-    //             summary: 'something short', 
-    //             detail: 'something really really long' 
-    //         },
-    //       },
-    //       control: {
-    //         type: null,
-    //       },
-    //     },
-    //   },
 } as Meta;
 
-export const Default = () => (
-    <>
-        <Button>Default</Button>
-    </>
-)
+export const Default = (args: any) => <Button {...args}>Primary</Button>
+
 Default.story = {
-    name:'Default 按钮',
+    name: 'Default 按钮',
     parameters: {
         docs: {
             source: {
-                code: "import Button from './button' \n \n ()=>(<Button>Default</Button>)"
+                code: "<Button>Primary</Button>"
             }
         },
         backgrounds: {
@@ -54,7 +50,22 @@ Default.story = {
                 { name: 'light', value: '#fff' },
             ],
         },
-    }
+    },
+    argTypes: {
+        btnType: {
+            control: {
+                type: 'select',
+                options: ["primary", "danger", "warning", "link", "default"]
+            },
+        },
+        className: {
+            control: 'null',
+            table: {
+                defaultValue: { summary: '.btn' }
+            }
+        },
+    },
+
 }
 
 const styleButton: any = (type: ButtonType, marginLeft: string) => {
@@ -91,6 +102,9 @@ Style.story = {
 <Button btnType="link" href="http://www.baidu.com" children="Baidu" />
                 `
             }
+        },
+        controls: {
+            hideNoControlsWarning: true,
         }
     },
     decorators: [(Story: any) => <div><Story /></div>]
@@ -98,7 +112,7 @@ Style.story = {
 
 export const Size = () => (
     <>
-        <Button size="lg" style={{margin:"10px"}}>Lager</Button>
+        <Button size="lg" style={{ margin: "10px" }}>Lager</Button>
         <Button size="sm">Small</Button>
     </>
 )
@@ -107,14 +121,17 @@ Size.story = {
     parameters: {
         docs: {
             description: {
-                story:'按钮有大、小两中尺寸。通过设置`size`为`lg` `sm`分别把按钮设为大，小尺寸。若不设置`size`，则尺寸为小 '
+                story: '按钮有大、小两中尺寸。通过设置`size`为`lg` `sm`分别把按钮设为大，小尺寸。若不设置`size`，则尺寸为小 '
             },
-            source:{
-                code:`
+            source: {
+                code: `
 <Button size="lg">Lager</Button>
 <Button size="sm">Small</Button>
                 `
             }
+        },
+        controls: {
+            hideNoControlsWarning: true,
         }
     }
 }
