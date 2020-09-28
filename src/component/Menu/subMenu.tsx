@@ -6,8 +6,11 @@ import { Icon } from '../Icon/icon';
 import { Transition } from '../Transition/transition';
 
 export interface SubMenuProps {
+    /** 二级菜单项标识 */
     index?: string;
+    /** 二级菜单名称 */
     title: string;
+    /** 用户自定义类名 */
     className?: string;
 }
 

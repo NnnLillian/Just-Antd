@@ -3,9 +3,13 @@ import classNames from 'classnames';
 import { MenuContext } from './menu';
 
 export interface MenuItemProps {
+    /** 子菜单项标识 */
     index?: string;
+    /** 是否禁用 */
     disabled?: boolean;
+    /** 用户自定义类名 */
     className?: string;
+    /** 用户自定义样式 */
     style?: CSSProperties;
 }
 
@@ -42,3 +46,7 @@ export const MenuItem: FC<MenuItemProps> = (props) => {
 
 // displayName : React内置的静态属性，帮助我们判断类型
 MenuItem.displayName = 'MenuItem'
+
+MenuItem.defaultProps = {
+    disabled: false
+}
