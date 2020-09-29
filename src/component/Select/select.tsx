@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react'
 import classNames from 'classnames'
 import { Input } from '../Input/input'
+import { Transition } from '../Transition/transition';
 
 
 export interface SelectProps {
@@ -31,10 +32,24 @@ export const Select: FC<SelectProps> = (props) => {
     onVisibleChange
   } = props;
 
+  // 下拉菜单的开合状态
+  const [menuOpen, setOpen] = useState(false)
+
+  // 更改下拉菜单开合状态的事件
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (!disabled) {
+      setOpen(!menuOpen)
+      if (onVisibleChange) {
+        onVisibleChange(!menuOpen)
+      }
+    }
+  }
+
   return (
     <div>
       {/* 输入框 */}
-      <div>
+      <div onClick={handleClick}>
         <Input
           readOnly
           name={name}
@@ -45,11 +60,18 @@ export const Select: FC<SelectProps> = (props) => {
       </div>
       {/* 下拉列表 */}
       <div>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
+        <Transition
+          in={menuOpen}
+          animation="zoom-in-top"
+          timeout={300}
+        >
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
+        </Transition>
+
       </div>
     </div>
   )
