@@ -34,6 +34,25 @@ export const Select: FC<SelectProps> = (props) => {
 
   // 下拉菜单的开合状态
   const [menuOpen, setOpen] = useState(false)
+  // 为输入框设置value值
+  const [value, setValue] = useState(typeof defaultValue === 'string' ? defaultValue : '')
+
+  const handleOptionClick = (value: string, isSelected: boolean) => {
+    // update value
+    if (!multiple) {
+      setOpen(false)
+      setValue(value)
+      if (onVisibleChange) {
+        onVisibleChange(false)
+      }
+    } else {
+      setValue('')
+    }
+    let updatedValues = [value]
+    if (onChange) {
+      onChange(value, updatedValues)
+    }
+  }
 
   // 更改下拉菜单开合状态的事件
   const handleClick = (e: React.MouseEvent) => {
@@ -71,7 +90,6 @@ export const Select: FC<SelectProps> = (props) => {
             <li>3</li>
           </ul>
         </Transition>
-
       </div>
     </div>
   )
