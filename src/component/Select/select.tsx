@@ -40,6 +40,7 @@ export const Select: FC<SelectProps> = (props) => {
   const handleOptionClick = (value: string, isSelected: boolean) => {
     // update value
     if (!multiple) {
+      alert('hsi' + value)
       setOpen(false)
       setValue(value)
       if (onVisibleChange) {
@@ -70,6 +71,7 @@ export const Select: FC<SelectProps> = (props) => {
       {/* 输入框 */}
       <div onClick={handleClick}>
         <Input
+          ref={ref}
           readOnly
           name={name}
           placeholder={placeholder}

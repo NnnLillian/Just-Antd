@@ -1,4 +1,4 @@
-import React, { ReactElement, FC, InputHTMLAttributes } from 'react';
+import React, { ReactElement, FC, InputHTMLAttributes, forwardRef } from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import classNames from 'classnames';
 import { Icon } from '../Icon/icon';
@@ -23,7 +23,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
     append?: string | ReactElement;
 }
 
-export const Input: FC<InputProps> = (props) => {
+export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     const {
         disabled,
         size,
@@ -48,6 +48,7 @@ export const Input: FC<InputProps> = (props) => {
             {prepend && <div className="input-prepend">{prepend}</div>}
             {icon && <div className="input-icon"> <Icon icon={icon} /> </div>}
             <input
+                ref={ref}
                 className="input-inner"
                 disabled={disabled}
                 {...restProps}
@@ -55,4 +56,4 @@ export const Input: FC<InputProps> = (props) => {
             {append && <div className="input-append">{append}</div>}
         </div>
     )
-}
+})
